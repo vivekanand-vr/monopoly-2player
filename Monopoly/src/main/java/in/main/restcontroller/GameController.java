@@ -14,12 +14,28 @@ public class GameController {
 	@Autowired
 	private IGameService service;
 	
-	
-	
     @PostMapping(value = "/create-game")
     public ResponseEntity<String> submitFormData() 
     {
-    	String message = "Game Created Sucessfully";
+    	String message = service.createGame();
         return new ResponseEntity<String>(message, HttpStatus.OK);
+    }
+    
+    
+    @PostMapping(value = "/roll-die/p1")
+    public ResponseEntity<String> playerATurn(){
+    	
+    	// Player 1 transaction call
+    	String transactionMessage = service.doTransaction('A'); 
+    	return new ResponseEntity<String>(transactionMessage, HttpStatus.OK);
+    }
+    
+    
+    @PostMapping(value = "/roll-die/p2")
+    public ResponseEntity<String> playerBTurn(){
+    	
+    	// Player 2 transaction call
+    	String transactionMessage = service.doTransaction('B'); 
+    	return new ResponseEntity<String>(transactionMessage, HttpStatus.OK);
     }
 }

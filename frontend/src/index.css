@@ -4,9 +4,11 @@
   margin-top: 50px;
   text-align: center;
 }
-
-h1 {
+.container h1 {
+  color: darkblue;
+  padding: 5px;
   font-size: 30px;
+  font-weight: 700;
   margin-bottom: 20px;
 }
 

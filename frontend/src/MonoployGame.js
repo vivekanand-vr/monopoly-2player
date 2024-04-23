@@ -35,13 +35,19 @@ function MonopolyGame() {
         // Switching players and updatind turn messages
         if (currentPlayer === 'A') {
             // Logic for Player A's turn
-
             setCurrentPlayer('B');
             setTurnMessage('Player A die rolled ' + diceNumber);
-        } else {
+
+            //send the data to the backend player and dice number to do the transaction
+
+
+        } 
+        else {
             // Logic for Player B's turn
             setCurrentPlayer('A');
             setTurnMessage('Player B die rolled ' + diceNumber);
+
+            // send the data to the backend (player name and dice number for transaction)
         }
     };
 
