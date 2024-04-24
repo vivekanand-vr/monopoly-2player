@@ -5,7 +5,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /*
- *  This configuration allows the fronend at local server -> 3000 to access the backed resolving CORS issue
+ *  This configuration allows the front-end at local server -> 3000 to access the backed resolving CORS issue
  *  enabling testing of the REST end points;
  */
 
