@@ -2,8 +2,7 @@ package in.main.service;
 
 public interface IGameService {
 	
-	public void initializePlayers(); 
-	public void initializePlaces();
 	public String createGame();
-	public String doTransaction(char player);
+	public String doTransaction1(char player);
+	public String doTransaction2(char player);
 }

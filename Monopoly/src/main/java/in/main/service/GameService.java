@@ -1,67 +1,81 @@
 package in.main.service;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import in.main.dao.IGameRepo;
 import in.main.dao.IPlayerRepo;
 import in.main.model.GameData;
 import in.main.model.Player;
+import in.main.util.Utilities;
 
 @Service
 public class GameService implements IGameService {
 
-	// Roll the dies
-	public static int rollDie() {
-        Random rand = new Random();
-        int die1 = rand.nextInt(6) + 1;
-        int die2 = rand.nextInt(6) + 1;
-        return die1 + die2;
-    }
+	
 	@Autowired
 	private IGameRepo gameRepo;
 	
 	@Autowired
 	private IPlayerRepo playerRepo;
 	
-	public void initializePlayers() {	
-		// Set all initial values of players
-		Player p1 = new Player();
-		p1.setId(1);
-		p1.setCash(1000);
-		p1.setCurrentPosition(0);
-		p1.setRound(1);
+	public String createGame() {
 		
-		Player p2 = new Player();
-		p2.setId(2);
-		p2.setCash(1000);
-		p2.setCurrentPosition(0);
-		p2.setRound(1);
-		
-		// save initial player values to database
-		playerRepo.saveAll(Arrays.asList(p1, p2));	
-	}
-	
-	public void initializePlaces() {	
-		// Set all values in the "claimed" column of GameData table to "unclaimed"
-        List<GameData> gameDataList = gameRepo.findAll();
+		String message = "Game Created Sucessfully";
+		Utilities utils = new Utilities();
+		// get game and playeres data and update them with initial values
+		List<Player>  players = utils.initializePlayers();
+		List<GameData> gameDataList = gameRepo.findAll();
         for (GameData gameData : gameDataList) {
             gameData.setClaimed("unclaimed");
         }
-        gameRepo.saveAll(gameDataList);
-	}
-	
-	public String createGame() {
-		String message = "Game Created Sucessfully";
-		initializePlayers();
-		initializePlaces();
+		
+        // reset initial values of both places and players for new game 
+		playerRepo.saveAll(players);
+		gameRepo.saveAll(gameDataList);
+		
 		return message;
 	}
 	
-	public String doTransaction(char player) {
+	public String doTransaction1(char player) {
+		String response = null;
+		// do the transaction
+		int rolledNumber = Utilities.rollDie(); // static function.
+		
+		// Get the player details first
+		Player currentPlayer = playerRepo.getById(1);
+		int currentPosition = currentPlayer.getCurrentPosition();
+		int newPosition = (currentPosition + rolledNumber) % 11; // as there are only 11 positions on board
+		if(newPosition < currentPosition) {
+			// is player completed a round, increment round and update cash
+			currentPlayer.setCash(newPosition);
+		}
+		
+		// Check for completing a round
+	    if (newPosition < currentPosition) {
+	        currentPlayer.setRound(currentPlayer.getRound() + 1); // Increment rounds
+	        
+	        // Game over based on rounds
+	        if (currentPlayer.getRound() >= 50) {
+	            // Check for winner based on cash
+	            Player otherPlayer = playerRepo.getById(2); // Assuming other player's ID is 2
+	            if (currentPlayer.getCash() > otherPlayer.getCash()) {
+	                response = "Player " + player + " wins!"; // Current player wins
+	            } else if (currentPlayer.getCash() < otherPlayer.getCash()) {
+	                response = "Player " + otherPlayer + " wins!"; // Other player wins
+	            } else {
+	                response = "It's a tie!"; // Both players have equal cash
+	            }
+	            return response;
+	        }
+	    }
+			
+		GameData gd = gameRepo.getOne(rolledNumber);
+		
+		return response;
+	}
+	
+	public String doTransaction2(char player) {
 		String response = null;
 		// do the transaction
 		

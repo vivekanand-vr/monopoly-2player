@@ -26,7 +26,7 @@ public class GameController {
     public ResponseEntity<String> playerATurn(){
     	
     	// Player 1 transaction call
-    	String transactionMessage = service.doTransaction('A'); 
+    	String transactionMessage = service.doTransaction1('A'); 
     	return new ResponseEntity<String>(transactionMessage, HttpStatus.OK);
     }
     
@@ -35,7 +35,7 @@ public class GameController {
     public ResponseEntity<String> playerBTurn(){
     	
     	// Player 2 transaction call
-    	String transactionMessage = service.doTransaction('B'); 
+    	String transactionMessage = service.doTransaction2('B'); 
     	return new ResponseEntity<String>(transactionMessage, HttpStatus.OK);
     }
 }
