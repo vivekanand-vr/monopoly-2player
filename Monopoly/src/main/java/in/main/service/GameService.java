@@ -65,14 +65,18 @@ public class GameService implements IGameService {
 			return "Game over, start new game";
 		}
 		
-	    // Check for completing a round, update the position 
-	    if (newPosition < currentPosition || currentPosition == 0) {
+		// update position and save
+		currentPlayer.setCurrentPosition(newPosition);
+		playerRepo.save(currentPlayer);
+		
+		
+		// Check for completing a round, update the position 
+	    if (newPosition < currentPosition) {
 	        currentPlayer.setRound(currentPlayer.getRound() + 1); 
-	        currentPlayer.setCurrentPosition(newPosition);
-
-		// update rounds as well as current position
-		playerRepo.save(currentPlayer);  
-		    
+	        
+	     // update rounds as well as current position
+	     playerRepo.save(currentPlayer);  
+	        
 	        // Game over based on rounds
 	        if (currentPlayer.getRound() == 50) {
 	            
@@ -242,15 +246,19 @@ public class GameService implements IGameService {
 			return "Game over, start new game";
 		}
 		
-	    // Check for completing a round, update the position 
-	    if (newPosition < currentPosition || currentPosition == 0) {
+		// update position and save
+		currentPlayer.setCurrentPosition(newPosition);
+		playerRepo.save(currentPlayer);
+		
+		// Check for completing a round, update the position 
+	    if (newPosition < currentPosition) {
 	        currentPlayer.setRound(currentPlayer.getRound() + 1); 
-	        currentPlayer.setCurrentPosition(newPosition);
-
-	     // update rounds as well as current position
-		playerRepo.save(currentPlayer);  
 	        
-	     // Game over based on rounds
+	        
+	     // update rounds as well as current position
+	     playerRepo.save(currentPlayer);  
+	        
+	     	// Game over based on rounds
 	        if (currentPlayer.getRound() == 50) {
 
 	            Player otherPlayer = playerRepo.getById(1); 
