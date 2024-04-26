@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import rollDie from './Utils/rollDie';
 
 function MonopolyGame() {
     
@@ -10,7 +9,6 @@ function MonopolyGame() {
     const [turnMessage, setTurnMessage] = useState('');
     const [currentPlayer, setCurrentPlayer] = useState('');
     const [gameStarted, setGameStarted] = useState(false);
-    const [diceNumber, setDiceNumber] = useState(1); 
 
     const handleNewGameClick = async () => {
         try {
@@ -18,7 +16,6 @@ function MonopolyGame() {
             setCurrentPlayer('A');
             setCashA(1000);
             setCashB(1000);
-            setDiceNumber(1);
             setTransactionMessage(response.data);
             setGameStarted(true);
         } catch (error) {
@@ -26,28 +23,26 @@ function MonopolyGame() {
         }
     };
 
-    const handleRollDice = () => {
-        
-        // Roll the die and get the number
-        const randomNumber = rollDie();
-        setDiceNumber(randomNumber);
+    const play =  async () => {
+        // Switching players and updating turn messages
+        try {
+            // Make the API call to perform the transaction
+            const response = await axios.post(
+                currentPlayer === 'A' ? 'http://localhost:9999/Monopoly/roll-die/p1' : 'http://localhost:9999/Monopoly/roll-die/p2'
+            );
+            setTransactionMessage(response.data);
 
-        // Switching players and updatind turn messages
-        if (currentPlayer === 'A') {
-            // Logic for Player A's turn
-            setCurrentPlayer('B');
-            setTurnMessage('Player A die rolled ' + diceNumber);
+            // Fetch updated cash details of both players after the transaction
+            const cashResponse = await axios.get('http://localhost:9999/Monopoly/get-cash-details');
+            setCashA(cashResponse.data.cashA);
+            setCashB(cashResponse.data.cashB);
 
-            //send the data to the backend player and dice number to do the transaction
-
-
+            // Change turn
+            setCurrentPlayer(currentPlayer === 'A' ? 'B' : 'A');
+            setTurnMessage(`Player ${currentPlayer === 'A' ? 'A' : 'B'} made the move and now turn ${currentPlayer === 'A' ? 'B' : 'A'}`);
         } 
-        else {
-            // Logic for Player B's turn
-            setCurrentPlayer('A');
-            setTurnMessage('Player B die rolled ' + diceNumber);
-
-            // send the data to the backend (player name and dice number for transaction)
+        catch (error) {
+            console.error(`Error making a move for player ${currentPlayer === 'A' ? 'A' : 'B'}`, error);
         }
     };
 
@@ -61,16 +56,15 @@ function MonopolyGame() {
                     <div className="player" id="playerA">
                         <h2>Player A</h2>
                         <p>Cash: <span id="cashA">${cashA}</span></p>
-                        <button onClick={handleRollDice} disabled={currentPlayer !== 'A'}>Roll Dice</button>
+                        <button onClick={play} disabled={currentPlayer !== 'A'}>Roll Dice</button>
                     </div>
                     <div className="player" id="playerB">
                         <h2>Player B</h2>
                         <p>Cash: <span id="cashB">${cashB}</span></p>
-                        <button onClick={handleRollDice} disabled={currentPlayer !== 'B'}>Roll Dice</button>
+                        <button onClick={play} disabled={currentPlayer !== 'B'}>Roll Dice</button>
                     </div>
                 </div>
             )}
-
             <div id="turnMessage">{turnMessage}</div>
             <div id="transactionMessage">{transactionMessage}</div>
         </div>
