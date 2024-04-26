@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import rollDie from './Utils/rollDie';
 
 function MonopolyGame() {
-    
+    // Make it config driven UI
     const [cashA, setCashA] = useState(1000);
     const [cashB, setCashB] = useState(1000); 
     const [transactionMessage, setTransactionMessage] = useState(''); 
     const [turnMessage, setTurnMessage] = useState('');
     const [currentPlayer, setCurrentPlayer] = useState('');
     const [gameStarted, setGameStarted] = useState(false);
-    const [diceNumber, setDiceNumber] = useState(1); 
 
     const handleNewGameClick = async () => {
         try {
@@ -18,7 +16,6 @@ function MonopolyGame() {
             setCurrentPlayer('A');
             setCashA(1000);
             setCashB(1000);
-            setDiceNumber(1);
             setTransactionMessage(response.data);
             setGameStarted(true);
         } catch (error) {
@@ -27,15 +24,18 @@ function MonopolyGame() {
     };
 
     const handleRollDice = () => {
-        
-        // Roll the die and get the number
-        const randomNumber = rollDie();
-        setDiceNumber(randomNumber);
+        try{
+            // fetch player details on every roll
+            const response = await axios.post('http://localhost:9999/...');
+        }    
+        // Die will be rolled on the backend
+        // Display cash details only
 
         // Switching players and updatind turn messages
         if (currentPlayer === 'A') {
             // Logic for Player A's turn
             setCurrentPlayer('B');
+            setCashA(response.cashA);
             setTurnMessage('Player A die rolled ' + diceNumber);
 
             //send the data to the backend player and dice number to do the transaction
@@ -45,6 +45,7 @@ function MonopolyGame() {
         else {
             // Logic for Player B's turn
             setCurrentPlayer('A');
+            setCashA(response.cashA);
             setTurnMessage('Player B die rolled ' + diceNumber);
 
             // send the data to the backend (player name and dice number for transaction)
