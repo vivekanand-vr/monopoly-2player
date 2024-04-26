@@ -2,7 +2,7 @@ package in.main.service;
 
 public interface IGameService {
 	
+	public int getCash(int id);
 	public String createGame();
-	public String doTransaction1(String player);
-	public String doTransaction2(String player);
+	public String playerTransaction(String player);
 }
