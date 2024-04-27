@@ -16,6 +16,7 @@ function MonopolyGame() {
             setCurrentPlayer('A');
             setCashA(1000);
             setCashB(1000);
+            setTurnMessage('Game Starts with player A, roll the dice');
             setTransactionMessage(response.data);
             setGameStarted(true);
         } catch (error) {
@@ -65,8 +66,8 @@ function MonopolyGame() {
                     </div>
                 </div>
             )}
-            <div id="turnMessage">{turnMessage}</div>
-            <div id="transactionMessage">{transactionMessage}</div>
+            { gameStarted && <div id="turnMessage">{turnMessage}</div> }
+            { gameStarted && <div id="transactionMessage">{transactionMessage}</div> }
         </div>
     );
 }
