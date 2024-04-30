@@ -6,8 +6,8 @@ module.exports = {
     theme: {
       extend: {
         fontFamily: {
-          'poppins': ['Poppins', 'sans-serif'],
-          'jersey-25': ['Jersey 25', 'sans-serif'],
+          'poppins': ['"Poppins"', 'sans-serif'],
+          'jersey-25': ['"Jersey 25"', 'sans-serif'],
         },
       },
     },
