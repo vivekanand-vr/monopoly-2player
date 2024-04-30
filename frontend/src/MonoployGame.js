@@ -48,26 +48,29 @@ function MonopolyGame() {
     };
 
     return (
-        <div className="container">
-            <h1>Welcome to Monopoly Game</h1>
-            <button onClick={handleNewGameClick}>Create New Game</button>
+        <div className="bg-[black] max-w-[1000px] text-center mt-[50px] m-auto rounded-[20px] border-[solid]">
+            <h1 className='text-white px-2 font-jersey-25 text-5xl font-bold mb-5 mt-5 text-shadow-md'>Welcome to Monopoly Game</h1>
+            <button className='text-xl font-semibold bg-[#ff6700] text-white rounded cursor-pointer mb-5 px-5 py-2.5 border-[none] hover:bg-[#0056b3]' 
+                    onClick={handleNewGameClick}>Create New Game</button>
 
             {gameStarted && (
-                <div className="players">
-                    <div className="player" id="playerA">
-                        <h2>Player A</h2>
+                <div className="flex justify-between mb-5">
+                    <div className="flex-1 bg-[#fff4e4] rounded shadow-[0_2px_4px_rgba(0,0,0,0.1)] mx-2.5 my-0 p-2.5">
+                        <h2 className='text-5xl font-jersey-25 mb-4'>Player A</h2>
                         <p>Cash: <span id="cashA">${cashA}</span></p>
-                        <button onClick={play} disabled={currentPlayer !== 'A'}>Roll Dice</button>
+                        <button className='text-xl font-semibold bg-[#ff6700] text-white rounded cursor-pointer mb-5 px-5 py-2.5 border-[none] hover:bg-[#0056b3]' 
+                                onClick={play} disabled={currentPlayer !== 'A'}>Roll Dice</button>
                     </div>
-                    <div className="player" id="playerB">
-                        <h2>Player B</h2>
+                    <div className="flex-1 bg-[#fff4e4] rounded shadow-[0_2px_4px_rgba(0,0,0,0.1)] mx-2.5 my-0 p-2.5">
+                        <h2 className='text-5xl font-jersey-25 mb-4'>Player B</h2>
                         <p>Cash: <span id="cashB">${cashB}</span></p>
-                        <button onClick={play} disabled={currentPlayer !== 'B'}>Roll Dice</button>
+                        <button className='text-xl font-semibold bg-[#ff6700] text-white rounded cursor-pointer mb-5 px-5 py-2.5 border-[none] hover:bg-[#0056b3]'
+                                onClick={play} disabled={currentPlayer !== 'B'}>Roll Dice</button>
                     </div>
                 </div>
             )}
-            { gameStarted && <div id="turnMessage">{turnMessage}</div> }
-            { gameStarted && <div id="transactionMessage">{transactionMessage}</div> }
+            { gameStarted && <div className="text-[white] text-[large] mb-5">{turnMessage}</div> }
+            { gameStarted && <div className="bg-[#0a704e] text-[25px] font-poppins text-[white] mb-[30px] p-2.5 rounded-[10px] border-[solid]">{transactionMessage}</div> }
         </div>
     );
 }
