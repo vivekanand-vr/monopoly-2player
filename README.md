@@ -30,9 +30,12 @@ This project is a Monopoly game implemented using Spring Boot. It allows players
 
 - Commit often with descriptive messages. Use a branch per feature to simulate team collaboration.
 
-## Extensibility
+## Technologies Used:
+- **Frontend**: React JS, Tailwind CSS
+- **Backend**: Java, Spring Boot, MySQL
+- **Testing Tools**: Junit, Jest
+- **IDEs**: Eclipse, VS-Code
 
-Additional features implemented should be clearly stated in `guide.txt`.
 
 ## Checklist
 
@@ -40,7 +43,7 @@ Additional features implemented should be clearly stated in `guide.txt`.
 - [ ] (Bonus) Diagrammed the system design.
 - [x] Completed a minimal working model with documentation of the required features.
 - [x] Improvise working model to incorporate appropriate design/architectural patterns.
-- [ ] Perform unit testing.
+- [x] Perform unit testing.
 - [ ] Create and Push `guide.txt`.
 - [ ] Create and Push `decisions.txt`.
 - [ ] Upload and Push `database_schema.png`.
