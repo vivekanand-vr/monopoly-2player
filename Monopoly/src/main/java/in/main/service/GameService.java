@@ -22,6 +22,7 @@ public class GameService implements IGameService {
 	* 	Get Cash Details of Players
 	*/
 	public int getCash(int id) {
+		@SuppressWarnings("deprecation")
 		Player player = playerRepo.getById(id);
 		return player.getCash();
 	}
