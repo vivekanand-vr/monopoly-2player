@@ -13,7 +13,7 @@ public class GameData {
 	@Id
     private int no;
 	private String place;
-	private String claimed; // only attribute that changes
+	private String claimed;
 	private int buyPrice;
 	private int rent;
 	

@@ -28,7 +28,6 @@ public class GetCashDetailsTest {
     public void testGetCashDetails() throws Exception {
         int mockCashA = 1000;
         int mockCashB = 1000;
-        
         PlayerDTO mockPlayerDTO = new PlayerDTO();
         mockPlayerDTO.setCashA(mockCashA);
         mockPlayerDTO.setCashB(mockCashB);

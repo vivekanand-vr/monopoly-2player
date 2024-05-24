@@ -42,10 +42,9 @@ public class GameController {
     @GetMapping("/get-cash-details")
     public PlayerDTO getCashDetails() {
      	
-        int cashA = service.getCash(1); // Get cash details of player A
-        int cashB = service.getCash(2); // Get cash details of player B
+        int cashA = service.getCash(1); 
+        int cashB = service.getCash(2);
         
-        // Create a CashDetailsDTO object and set the cash details
         PlayerDTO cashDetails = new PlayerDTO();
         cashDetails.setCashA(cashA);
         cashDetails.setCashB(cashB);

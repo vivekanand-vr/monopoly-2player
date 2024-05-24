@@ -7,7 +7,6 @@ import in.main.model.Player;
 
 public class Utilities {
 	
-	// Roll the dies
 	public static int rollDie() {
 	   Random rand = new Random();
 	   int die1 = rand.nextInt(6) + 1;
@@ -16,7 +15,6 @@ public class Utilities {
 	}
 		
 	public List<Player> initializePlayers(){
-		// Set all initial values of players
 		Player p1 = new Player();
 		p1.setId(1);
 		p1.setCash(1000);
@@ -30,8 +28,9 @@ public class Utilities {
 		p2.setRound(1);
 		
 		List<Player> list = new ArrayList<Player>();
-		list.add(p1);
+		list.add(p1); 
 		list.add(p2);
+		
 		return list;	
 	}
 	
