@@ -25,20 +25,15 @@ function MonopolyGame() {
     };
 
     const play =  async () => {
-        // Switching players and updating turn messages
         try {
-            // Make the API call to perform the transaction
             const response = await axios.post(
                 currentPlayer === 'A' ? 'http://localhost:9999/Monopoly/roll-die/p1' : 'http://localhost:9999/Monopoly/roll-die/p2'
             );
             setTransactionMessage(response.data);
-
-            // Fetch updated cash details of both players after the transaction
             const cashResponse = await axios.get('http://localhost:9999/Monopoly/get-cash-details');
             setCashA(cashResponse.data.cashA);
             setCashB(cashResponse.data.cashB);
 
-            // Change turn
             setCurrentPlayer(currentPlayer === 'A' ? 'B' : 'A');
             setTurnMessage(`Player ${currentPlayer === 'A' ? 'A' : 'B'} made the move and now turn ${currentPlayer === 'A' ? 'B' : 'A'}`);
         } 
