@@ -1,4 +1,4 @@
-# Monopoly Game with Spring Boot
+# 2 Player Monopoly Game with Spring Boot
 
 This project is a Monopoly game implemented using Spring Boot. It allows players to create and play the game online with the following features:
 
@@ -15,44 +15,28 @@ This project is a Monopoly game implemented using Spring Boot. It allows players
 
 ## Example System Usage
 
-- Person A : [http://localhost:8080/create-game/](http://localhost:8080/create-game/) >> Game Created Successfully
-- Person A : [http://localhost:8080/roll-die/p1](http://localhost:8080/roll-die/p1) >> Die rolled 11 and landed on Place ABC, Unclaimed place and hence bought for $200. Remaining balance is $800.
-- Person B : [http://localhost:8080/roll-die/p2](http://localhost:8080/roll-die/p2) >> Die rolled 4 and landed on Place DEF, Unclaimed place and hence bought for $150. Remaining balance is $850.
-- ...
+- Person A : [http://localhost:9999/create-game/](http://localhost:8080/create-game/) >> Game Created Successfully
+- Person A : [http://localhost:9999roll-die/p1](http://localhost:8080/roll-die/p1) >> Die rolled 11 and landed on Place ABC, Unclaimed place and hence bought for $200. Remaining balance is $800.
+- Person B : [http://localhost:9999/roll-die/p2](http://localhost:8080/roll-die/p2) >> Die rolled 4 and landed on Place DEF, Unclaimed place and hence bought for $150. Remaining balance is $850.
 
-## Non-Functional Features
+## Features
 
 1. **Database Data Persistence**: Data persistence ensures that even if the Spring application is restarted, the game can be played uninterrupted.
 2. **Design Patterns**: MVC design pattern is used for a highly maintainable and readable code base.
 3. **Documentation**: Documentation ensures a highly maintainable and readable code base.
 
-## Git Usage
-
-- Commit often with descriptive messages. Use a branch per feature to simulate team collaboration.
-
 ## Technologies Used:
-- **Frontend**: React JS, Tailwind CSS
-- **Backend**: Java, Spring Boot, MySQL
-- **Testing Tools**: Junit, Jest
-- **IDEs**: Eclipse, VS-Code
-
+- **Frontend**: React JS, Tailwind CSS, Jest
+- **Backend**: Java, Spring Boot, MySQL, Junit
 
 ## Checklist
 
-- [ ] Diagrammed the database schema.
-- [ ] (Bonus) Diagrammed the system design.
 - [x] Completed a minimal working model with documentation of the required features.
 - [x] Improvise working model to incorporate appropriate design/architectural patterns.
 - [x] Perform unit testing.
 - [ ] Create and Push `guide.txt`.
 - [ ] Create and Push `decisions.txt`.
-- [ ] Upload and Push `database_schema.png`.
-- [ ] (Bonus) Upload and Push `system_design.png`.
-- [x] Added User Interface to play and display messages.
-
-## Contributors
-- Vivekanand Vernekar
-- Dino James
+- [x] Add User Interface to play and display messages.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
