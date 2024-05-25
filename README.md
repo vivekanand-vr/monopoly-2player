@@ -35,8 +35,4 @@ This project is a Monopoly game implemented using Spring Boot. It allows players
 - [x] Improvise working model to incorporate appropriate design/architectural patterns.
 - [x] Perform unit testing.
 - [ ] Create and Push `guide.txt`.
-- [ ] Create and Push `decisions.txt`.
 - [x] Add User Interface to play and display messages.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
